@@ -15,3 +15,12 @@ RUN apt-get install nodejs -y
 RUN node --version
 RUN npm --version
 
+RUN mkdir /opt/app
+RUN git clone https://github.com/kjcaway/portfolio.git /opt/app
+
+WORKDIR /opt/app/portfolio/
+ENV PATH /opt/app/portfolio/node_modules/.bin:$PATH
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent
+
+CMD ["npm", "start"]
