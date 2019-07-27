@@ -26,15 +26,16 @@ RUN git clone https://github.com/kjcaway/portfolio.git /opt/app/portfolio
 # nginx pull
 FROM node:10.16.0-alpine
 
+ENV PORT 8080
 RUN mkdir -p /opt/app/portfolio-server
 WORKDIR /opt/app/portfolio-server
 
 # 서버 소스 카피
-COPY --from=bulids /opt/app/portfolio/server /opt/app/portfolio-server
+COPY --from=builds /opt/app/portfolio/server /opt/app/portfolio-server
 COPY package*.json ./
 COPY config.js ./config/config.js
 
 RUN npm install
 
-EXPOSE 8080
-CMD [ "node", "app,js" ]
+EXPOSE ${PORT}
+CMD [ "node", "app.js" ]
