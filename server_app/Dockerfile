@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:16.04 AS builds
 LABEL version='1.0.0'
 
 USER root
@@ -11,7 +11,7 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install git -y
 RUN apt-get install curl -y
-RUN apt-get install vim -y
+# RUN apt-get install vim -y
 
 # node 설치
 RUN curl -sL https://deb.nodesource.com/setup_10.x  | bash -
@@ -23,9 +23,18 @@ RUN npm --version
 RUN mkdir -p /opt/app/portfolio
 RUN git clone https://github.com/kjcaway/portfolio.git /opt/app/portfolio
 
-# react app build
-WORKDIR /opt/app/portfolio/
-ENV PATH /opt/app/portfolio/node_modules/.bin:$PATH
-RUN npm install --silent
-RUN npm install react-scripts@3.0.1 -g --silent
-RUN npm run build
+# nginx pull
+FROM node:10.16.0-alpine
+
+RUN mkdir -p /opt/app/portfolio-server
+WORKDIR /opt/app/portfolio-server
+
+# 서버 소스 카피
+COPY --from=bulids /opt/app/portfolio/server /opt/app/portfolio-server
+COPY package*.json ./
+COPY config.js ./config/config.js
+
+RUN npm install
+
+EXPOSE 8080
+CMD [ "node", "app,js" ]
