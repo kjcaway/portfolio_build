@@ -11,19 +11,12 @@ RUN apt-get update
 RUN apt-get upgrade -y
 RUN apt-get install git -y
 RUN apt-get install curl -y
-# RUN apt-get install vim -y
-
-# node 설치
-RUN curl -sL https://deb.nodesource.com/setup_10.x  | bash -
-RUN apt-get install nodejs -y
-RUN node --version
-RUN npm --version
 
 # 소스파일 얻어오기
 RUN mkdir -p /opt/app/portfolio
 RUN git clone https://github.com/kjcaway/portfolio.git /opt/app/portfolio
 
-# nginx pull
+# node pull
 FROM node:10.16.0-alpine
 
 ENV PORT 8080
