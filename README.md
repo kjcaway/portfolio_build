@@ -1,12 +1,24 @@
 ## portfolio 프로젝트 릴리즈 용 빌드
 
 - docker
+- docker-compose
 
-- release image build
-- 1. ubuntu 이미지 다운로드
-- 2. git 설치, curl 설치(node 설치를 위해)
-- 3. git clone으로 어플리케이션 소스 다운로드
-- 4. node 설치 
+- react release image build
+- 1. ubuntu image pull
+- 2. git, curl install
+- 3. git clone
+- 4. nodejs install
 - 5. npm install
-- 6. npm build
-- 7. (계속...)
+- 6. npm build -> we can get output react app source built
+- 7. nginx image pull
+- 8. nginx default.conf copy & paste
+- 9. source copy to nginx index
+- 10. nginx execute
+
+
+- express release image build
+- 1. ubuntu image pull
+- 2. git, curl install
+- 3. git clone
+- 4. nodejs install
+- 5. npm install
