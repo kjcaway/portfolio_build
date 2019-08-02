@@ -4,24 +4,23 @@
 - docker-compose version  1.23.1
 
 ### portfolio docker image scenario(react application + nginx)
-- 1. ubuntu image pull
-- 2. git, curl install
-- 3. git clone
-- 4. nodejs install
-- 5. npm install
-- 6. npm build -> we can get output react app source built
-- 7. nginx image pull
-- 8. nginx default.conf copy & paste
-- 9. source copy to nginx index
-- 10. nginx execute
+1. ubuntu image 다운로드
+2. ubuntu - git, curl 설치
+3. ubuntu - git으로부터 소스 얻어옴
+4. ubuntu - nodejs 설치 후 webpack 빌드
+5. ubuntu - output 생성
+6. nginx image 다운로드
+7. nginx - nginx 설정파일 컨테이너로 카피
+8. nginx - output 컨테이너로 카피
+9. nginx - nginx 실행
 
 
 ### portfolio-server docker image scenario(node[express] application)
-- 1. ubuntu image pull
-- 2. git, curl install
-- 3. git clone
-- 4. node image pull
-- 5. src copy & paste
-- 6. config, package.json copy & paste
-- 7. npm install
-- 8. node execute
+1. ubuntu image 다운로드
+2. ubuntu - git, curl 설치
+3. ubuntu - git으로부터 소스 얻어옴
+4. node image 다운로드
+5. node - 서버소스 컨테이너로 카피
+6. node - config, package.json 컨테이너로 카피
+7. node - npm install
+8. node - node 실행
